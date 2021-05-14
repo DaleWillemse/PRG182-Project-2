@@ -8,7 +8,7 @@ namespace PRG182_Project_2
 {
     class Program
     {
-        enum mainMenu
+        enum MainMenu
         {
             Breakfast = 1,
             Burgers,
@@ -29,27 +29,27 @@ namespace PRG182_Project_2
             {
                 Console.WriteLine("1. Breakfast \n2. Burgers \n3. Pizza \n4. Kids\n5. Drinks \n6. Checkout\n7. Exit");
                 int option = int.Parse(Console.ReadLine());
-                mainMenu main =(mainMenu)option;
+                MainMenu main =(MainMenu)option;
                 switch (main)
                 {
-                    case mainMenu.Breakfast:
-                        menuChoice(option);
+                    case MainMenu.Breakfast:
+                        MenuChoice(option);
                         break;
-                    case mainMenu.Burgers:
-                        menuChoice(option);
+                    case MainMenu.Burgers:
+                        MenuChoice(option);
                         break;
-                    case mainMenu.Pizza:
-                        menuChoice(option);
+                    case MainMenu.Pizza:
+                        MenuChoice(option);
                         break;
-                    case mainMenu.Kids:
-                        menuChoice(option);
+                    case MainMenu.Kids:
+                        MenuChoice(option);
                         break;
-                    case mainMenu.Drinks:
-                        menuChoice(option);
+                    case MainMenu.Drinks:
+                        MenuChoice(option);
                         break;
-                    case mainMenu.Checkout: // After checkout , everything needs to reset.
+                    case MainMenu.Checkout: // After checkout , everything needs to reset.
                         break;
-                    case mainMenu.Exit:
+                    case MainMenu.Exit:
                         exit = true;
                         break;
                     default:
@@ -58,7 +58,7 @@ namespace PRG182_Project_2
                 }
             }
         }
-        static int menuChoice(int userChoice)
+        static int MenuChoice(int userChoice)
         {
             int choice = userChoice;
 
