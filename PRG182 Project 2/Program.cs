@@ -3,12 +3,15 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PRG182_Project_2
 {
+    public class Cart
+    {
+        public List<string> name_item = new List<string>();
+        public List<float> price_item = new List<float>();
+    }
+
     class Program
     {
         enum MainMenu
@@ -22,11 +25,20 @@ namespace PRG182_Project_2
             Exit
         }
 
-        public List<string> order = new List<string>(); // Stores current order.
         public int runningTotal = 0; // Running total of order.
           
         static void Main(string[] args)
         {
+        
+            Cart order = new Cart();  // newCart initialized from class
+            // Clears order sheet           
+            cart_clear(order);
+
+            // variables
+            string name_item = null;
+            float cost_item = 0f;
+
+
             bool exit = false;
             while (exit == false)
             {
@@ -67,5 +79,32 @@ namespace PRG182_Project_2
 
             return choice;
         }
+
+        static void cart_add(Cart order, string name_item, float cost_item)
+        {
+            order.name_item.Add(name_item);
+            order.price_item.Add(cost_item);
+        }
+
+        static void cart_clear(Cart order)
+        {
+            order.name_item.Clear();
+            order.price_item.Clear();
+        }
+
+        static void cart_view(Cart order)
+        {
+            int length_order = order.name_item.Count;
+
+            Console.WriteLine("\n-------- Order --------");
+
+            // Displays items in order
+            for (int i = 0; i < length_order; i++)
+            {
+                Console.WriteLine("{0} \t {1}", order.name_item[i], order.price_item[i]);
+            }
+
+        }
+
     }
 }
