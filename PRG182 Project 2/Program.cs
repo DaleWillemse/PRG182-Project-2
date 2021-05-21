@@ -1,5 +1,7 @@
 ﻿// Dale Willemse
-// Albrecht Ohsiek
+// Albrecht Ohsiek  578445
+// Programming 182  - Project 2
+// (16-20)-05-2021
 
 using System;
 using System.Collections.Generic;
@@ -7,6 +9,8 @@ using System.Collections.Generic;
 
 namespace PRG182_Project_2
 {
+    // Class containing Lists
+    //Used as reference type to store data and manipulate it within seperat methods
     public class Cart
     {
         public List<string> name_item = new List<string>();
@@ -23,18 +27,17 @@ namespace PRG182_Project_2
         enum Kids { Chips = 1, Sandwhich, Russians, Back=0 }
         enum Drinks { Coke = 1, Fanta, Sprite, Water, Back=0 }
 
-        public int runningTotal = 0; // Running total of order.
-
         static void Main(string[] args)
         {
 
-            Cart order = new Cart();  // new Cart initialized from class           
+            Cart order = new Cart();  // new Cart construct from class          
             cart_clear(order); // Clears order 
 
-            menuMain(order);
+            menuMain(order);    // Main menu handels all menu changes
             
         }
 
+        // Main menu redirect user to different submenus
         public static void menuMain(Cart order)
         {
             bool exit = false;
@@ -52,28 +55,28 @@ namespace PRG182_Project_2
                     switch (main)
                     {
                         case Menu.Breakfast:
-                            exit_sub_menu = menu_breakfast(order);
+                            exit_sub_menu = menu_breakfast(order);  // calls breakfast submenu
                             break;
                         case Menu.Burgers:
-                            exit_sub_menu = menu_burger(order);
+                            exit_sub_menu = menu_burger(order);     // calls burger submenu
                             break;
                         case Menu.Pizza:
-                            exit_sub_menu = menu_pizza(order);
+                            exit_sub_menu = menu_pizza(order);      // calls pizza submenu
                             break;
                         case Menu.Kids:
-                            exit_sub_menu = menu_kids(order);
+                            exit_sub_menu = menu_kids(order);   // calls kids menu submenu
                             break;
                         case Menu.Drinks:
-                            exit_sub_menu = menu_drinks(order);
+                            exit_sub_menu = menu_drinks(order); // drink menu
                             break;
-                        case Menu.Checkout: // After checkout , everything needs to reset.
+                        case Menu.Checkout: // After checkout , cart needs to be cleared
                             cart_view(order);
 
                             Console.WriteLine("\n1. Continue Shopping\n2. Checkout");
                             int choice = int.Parse(Console.ReadLine());
                             if (choice == 1)
                             {
-                                break;
+                                break;  // does not clear cart
                             }
                             else if (choice == 2)
                             {
@@ -95,13 +98,14 @@ namespace PRG182_Project_2
             }
         }
 
+        // simple breakfast submenu. Other submenus follow same form
         public static bool menu_breakfast(Cart order)
         {
             bool exit = false;
 
             while (exit == false)
             {
-                cart_view(order);
+                cart_view(order);   // display current items in cart
 
                 Console.WriteLine("Breakfast Menu");
                 Console.WriteLine("\n1. Breakfast Special\tR30\n2. Hashbrown and Eggs\tR25\n3. Sunday Special\tR35\n4. Toast\t\tR10\n0. Back");
@@ -110,7 +114,7 @@ namespace PRG182_Project_2
                 switch (choice)
                 {
                     case Breakfast.Breakfastspecial:
-                        cart_add(order, "Breakfast Special", 30);
+                        cart_add(order, "Breakfast Special", 30);   // cart_add adds specific item to cart
                         break;
                     case Breakfast.Hashbrownandeggs:
                         cart_add(order, "Hashbrown and Eggs", 25);
@@ -280,18 +284,21 @@ namespace PRG182_Project_2
             return exit;
         }
 
+        // Handles adding items to cart via reference type - to seperate name and price lists
         public static void cart_add(Cart order, string name_item, float cost_item)
         {
-            order.name_item.Add(name_item);
-            order.price_item.Add(cost_item);
+            order.name_item.Add(name_item); // add name by reference to list
+            order.price_item.Add(cost_item);    // adds unit price of item via reference
         }
 
+        // clears all data contained within lists
         public static void cart_clear(Cart order)
         {
             order.name_item.Clear();
             order.price_item.Clear();
         }
 
+        // Display for items in cart
         public static void cart_view(Cart order)
         {
             Console.Clear();    // Clears console
